@@ -78,9 +78,9 @@ public class MyScheduler
     Trigger trigger = createTrigger(j);
 
     JobDetail job = JobBuilder.newJob(PearlJob.class)
-      .withIdentity("a")
+      .withIdentity(" "+j.getId())
     // .getName(), "group1")
-      .withDescription("abc")
+      .withDescription(j.getName())
     //  .getName())
       .build();
     this.sched.scheduleJob(job, trigger);
@@ -91,7 +91,7 @@ public class MyScheduler
     return TriggerBuilder.newTrigger()
       .withIdentity("trigger" + j)
   //    .getId(), "group1")
-      .withSchedule(CronScheduleBuilder.cronSchedule("dddd"))
+      .withSchedule(CronScheduleBuilder.cronSchedule(j.getSchedule()))
      // .getSchedule()
       .build();
   }
