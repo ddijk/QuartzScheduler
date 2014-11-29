@@ -81,6 +81,7 @@ public class MyScheduler
       .withIdentity(" "+j.getId())
     // .getName(), "group1")
       .withDescription(j.getName())
+            .usingJobData("env", "DEV1")
     //  .getName())
       .build();
     this.sched.scheduleJob(job, trigger);
@@ -95,6 +96,14 @@ public class MyScheduler
      // .getSchedule()
       .build();
   }
+  
+   private Trigger createNowTrigger()
+  {
+    return TriggerBuilder.newTrigger()
+      .withIdentity("nowtrigger")
+            .startNow()
+      .build();
+  }
 
   private Trigger createTrigger(String name, String cronSchedule)
   {
@@ -104,5 +113,18 @@ public class MyScheduler
       .withIdentity(name, "group1")
       .withSchedule(SimpleScheduleBuilder.repeatSecondlyForTotalCount(10, 4))
       .build();
+  }
+  
+  public void startNow(Job j) throws SchedulerException {
+      
+      
+      JobDetail job = JobBuilder.newJob(PearlJob.class)
+      .withIdentity(" "+j.getId())
+    // .getName(), "group1")
+      .withDescription(j.getName())
+            .usingJobData("env", "DEV2")
+    //  .getName())
+      .build();
+    this.sched.scheduleJob(job, createNowTrigger());
   }
 }

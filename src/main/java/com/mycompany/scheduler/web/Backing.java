@@ -7,6 +7,8 @@ package com.mycompany.scheduler.web;
  */
 import com.mycompany.scheduler.Job;
 import com.mycompany.scheduler.quartz.MyScheduler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
@@ -65,6 +67,15 @@ public class Backing {
             System.err.println("Failed to schedule job " + j);
         }
         
+    }
+    
+    public void startNow() {
+         Job j = new Job(name, schedule);
+        try {
+            myScheduler.startNow(j);
+        } catch (SchedulerException ex) {
+            System.err.println("Failed to schedule job " + j);
+        }
     }
     
 }

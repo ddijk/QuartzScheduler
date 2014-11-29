@@ -6,6 +6,7 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
+        <div>Scheduled jobs</div>
         <h:form>
             
             naam:<h:inputText value="#{backing.name}"/>
@@ -13,6 +14,14 @@
             schedule<h:inputText value="#{backing.schedule}"/>
             <br></br>
             <h:commandButton value="OK" action="#{backing.save()}"/>
+        </h:form>
+        <div> Start now jobs:</div>
+        <h:form>
+            
+            naam:<h:inputText value="#{backing.name}"/>
+            
+            <br></br>
+            <h:commandButton value="Start now" action="#{backing.startNow()}"/>
         </h:form>
     </h:body>
 </html>

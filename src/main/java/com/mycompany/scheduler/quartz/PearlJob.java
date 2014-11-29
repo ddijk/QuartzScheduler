@@ -12,11 +12,13 @@ public class PearlJob
 {
   String id;
   private static int counter;
+  
+  String env;
 
   public void execute(JobExecutionContext jec)
     throws JobExecutionException
   {
-    System.out.println("Running job " + jec.getJobDetail().getDescription() + " ** " + counter++ + ". " + new Date());
+    System.out.println("Running job " + jec.getJobDetail().getDescription() + " ** " + counter++ + ". " + new Date()+", env="+jec.getMergedJobDataMap().getString("env"));
   }
 
   public String toString()
